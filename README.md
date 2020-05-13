@@ -32,3 +32,10 @@ Bots in all fields of applications are one of the upcoming trends, however they 
 * The web app provides the user with the top trending news articles for the specified query, along with each article’s sentiment analysis.
 * The Watson Discovery Service responds to Slack search requests.
 
+![flowchart](https://user-images.githubusercontent.com/64250870/81824151-c6008080-9552-11ea-9036-2cab60f34b15.png)
+
+# Also See:
+* [Project Development Procedure](pro-dev.md)
+* [Project Results](pro-results.md)
+* [Node-Red Flow](node-red-flow.json)
+
