@@ -1,0 +1,234 @@
+[
+    {
+        "id": "dbe75bd8.83ee18",
+        "type": "tab",
+        "label": "AI News Search App",
+        "disabled": false,
+        "info": "SmartInternz App"
+    },
+    {
+        "id": "c0be13c4.7e7b6",
+        "type": "function",
+        "z": "dbe75bd8.83ee18",
+        "name": "function1",
+        "func": "msg={\n    discoveryparams:\n    {\n        \"environment_id\":\"system\",\n        \"query\":msg.payload.input\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "c38f0414.7fe598"
+            ]
+        ]
+    },
+    {
+        "id": "b535b29f.2eb6",
+        "type": "function",
+        "z": "dbe75bd8.83ee18",
+        "name": "function2",
+        "func": "msg.h0 = msg.search_results.results[0].title;\nmsg.t0 = msg.search_results.results[0].text;\nmsg.s0 = \"sentiment : \" +msg.search_results.results[0].enriched_text.sentiment.document.score;\nmsg.h1 = msg.search_results.results[1].title;\nmsg.t1 = msg.search_results.results[1].text;\nmsg.s1 = \"sentiment : \" +msg.search_results.results[1].enriched_text.sentiment.document.score;\nmsg.h2 = msg.search_results.results[2].title;\nmsg.t2 = msg.search_results.results[2].text;\nmsg.s2 = \"sentiment : \" +msg.search_results.results[2].enriched_text.sentiment.document.score;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "d4a204b8.efc058",
+                "2282b963.b04a76"
+            ]
+        ]
+    },
+    {
+        "id": "7c9b6812.a54bd8",
+        "type": "ui_form",
+        "z": "dbe75bd8.83ee18",
+        "name": "",
+        "label": "",
+        "group": "adfde212.238c4",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "Find articles about",
+                "value": "input",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "input": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "c0be13c4.7e7b6"
+            ]
+        ]
+    },
+    {
+        "id": "c38f0414.7fe598",
+        "type": "watson-discovery-v1",
+        "z": "dbe75bd8.83ee18",
+        "name": "news",
+        "environmentname": "",
+        "environmentId": "system",
+        "collectionId": "news-en",
+        "configurationname": "",
+        "configurationId": "",
+        "language_code": "en",
+        "collection_name": "",
+        "count": "5",
+        "passages": true,
+        "nlp_query": true,
+        "query": "",
+        "filter": "",
+        "aggregation": "",
+        "return": "",
+        "description": "",
+        "size": "LT",
+        "discovery-method": "query",
+        "service-endpoint": "https://api.eu-gb.discovery.watson.cloud.ibm.com/instances/849663e1-a79d-4524-818c-9e6d967103c3",
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "b535b29f.2eb6",
+                "544c6d97.ee5994"
+            ]
+        ]
+    },
+    {
+        "id": "d4a204b8.efc058",
+        "type": "debug",
+        "z": "dbe75bd8.83ee18",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 810,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "544c6d97.ee5994",
+        "type": "function",
+        "z": "dbe75bd8.83ee18",
+        "name": "function3",
+        "func": "msg.labels = [\"Article 1\",\"Article 2\",\"Article 3\"];\nmsg.data = [[msg.search_results.results[0].enriched_text.sentiment.document.score,\n        msg.search_results.results[1].enriched_text.sentiment.document.score,\n        msg.search_results.results[2].enriched_text.sentiment.document.score]];\nmsg.series = [\"Sentiment Score\"];\n\nreturn {payload:[msg],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 360,
+        "wires": [
+            [
+                "a83e5f54.c80e9",
+                "55d463ee.26917c"
+            ]
+        ]
+    },
+    {
+        "id": "a83e5f54.c80e9",
+        "type": "debug",
+        "z": "dbe75bd8.83ee18",
+        "name": "score",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 780,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "2282b963.b04a76",
+        "type": "ui_text",
+        "z": "dbe75bd8.83ee18",
+        "group": "adfde212.238c4",
+        "order": 2,
+        "width": "6",
+        "height": "7",
+        "name": "",
+        "label": "<B><h3>TOP NEWS ARTICLES FOR YOU</h3></B>",
+        "format": "<br><hr><br><u><i>{{msg.h0}}</i></u><br><br>{{msg.t0}}<br><br>{{msg.s0}}<br><hr><br><u><i>{{msg.h1}}</i></u><br><br>{{msg.t1}}<br><br>{{msg.s1}}<br><hr><br><u><i>{{msg.h2}}</i></u><br><br>{{msg.t2}}<br><br>{{msg.s2}}<br><hr><br><br><br><br>",
+        "layout": "col-center",
+        "x": 980,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "55d463ee.26917c",
+        "type": "ui_chart",
+        "z": "dbe75bd8.83ee18",
+        "name": "",
+        "group": "adfde212.238c4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "SENTIMENT ANALYSIS FOR ARTICLES",
+        "chartType": "bar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "getting results",
+        "dot": false,
+        "ymin": "-1",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#d82784",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "adfde212.238c4",
+        "type": "ui_group",
+        "z": "",
+        "name": "News App",
+        "tab": "78c4d123.47ad6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "78c4d123.47ad6",
+        "type": "ui_tab",
+        "z": "",
+        "name": "IBM Watson",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
