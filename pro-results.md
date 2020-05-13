@@ -11,3 +11,6 @@ note : if the node-red app is not running in IBM cloud, then the website wont wo
 **1. workspace :** *oisheeworkbench.slack.com*<br>
 **2. channel :** *news*<br><br>
 ![slack-results](https://user-images.githubusercontent.com/64250870/81783351-d5fb6e80-9518-11ea-8c5a-7fdfc5ac01b4.png)
+
+# Project Demo Video Link
+https://drive.google.com/file/d/12M851hIwA65vA5qFoiL-8w7ZFAZfRlr6/view?usp=sharing
