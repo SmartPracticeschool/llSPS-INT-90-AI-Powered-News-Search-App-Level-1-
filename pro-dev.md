@@ -1,4 +1,8 @@
-* A IBM Cloud Account is to be created under Academic Initiative was created
+# Steps to be followed for Project Development
+
+![block-diagram](https://user-images.githubusercontent.com/64250870/81781272-7fd8fc00-9515-11ea-8752-276c244ad1ea.png)
+
+* A IBM Cloud Account is to be created (can be under Academic Initiative optionally for added benefits).
 
 >The IBM cloud platform combines platform as a service (PaaS) with infrastructure as a service (IaaS) to provide an integrated experience. 
 
@@ -36,7 +40,25 @@ Select the region of of deployement as the one in which the Cloudant instance ha
 
 **Step 6 :** Create the given Node-Red flow along with the necessary changes to be done in each node as provided below.
 
+![node-red-flow](https://user-images.githubusercontent.com/64250870/81781274-80719280-9515-11ea-8ea6-ff68e93da303.png)
+
+![function1-node-prop](https://user-images.githubusercontent.com/64250870/81781280-81a2bf80-9515-11ea-9c17-6eaf727236d3.png)
+
+![form-node-prop](https://user-images.githubusercontent.com/64250870/81781276-810a2900-9515-11ea-9478-153e5abf99d9.png)
+
+![discovery-node-prop](https://user-images.githubusercontent.com/64250870/81781277-810a2900-9515-11ea-9252-32730ebf6435.png)
+
+![function2-node-prop](https://user-images.githubusercontent.com/64250870/81781266-7e0f3880-9515-11ea-8a22-6d79788cb79f.png)
+
+![text-node-prop](https://user-images.githubusercontent.com/64250870/81781269-7f406580-9515-11ea-9163-086865189356.png)
+
+![function3-node-prop](https://user-images.githubusercontent.com/64250870/81781270-7fd8fc00-9515-11ea-83cf-2184ec339a24.png)
+
+![chart-node-prop](https://user-images.githubusercontent.com/64250870/81781321-90897200-9515-11ea-8989-dede456e0422.png)
+
 **Step 7 :** Deploy the app. Go to the website link associated with the particular Node-Red App. Query topics related to which, news article will be provided along with the sentiment they represent.
+
+![deployed-website](https://user-images.githubusercontent.com/64250870/81781324-91220880-9515-11ea-9e2b-952722b2e0d6.png)
 
 # Deploying Discovery news app and integrating with slack-bot:
  
@@ -54,6 +76,8 @@ Select the region of of deployement as the one in which the Cloudant instance ha
 
 **Step 5 :** From the Cutsom Integrations page, select the Bots option. 
 
+![bot-integration](https://user-images.githubusercontent.com/64250870/81781311-8ebfae80-9515-11ea-9092-c5cfbd03d43b.png)
+
 **Step 6 :** To add a new bot, select the [Add Configuration button]. Enter a username for the bot and click [Add bot integration]. Once created, save the API Token that is generated. 
 
 **Step 7 :** Edit the .env file and enter the Slack Bot API Token saved.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,3 +89,4 @@ Select the region of of deployement as the one in which the Cloudant instance ha
 *npm start*
  
 The application will be available at http://localhost:3000. Also now you can access the bot from slack after adding it to a channel.
+
